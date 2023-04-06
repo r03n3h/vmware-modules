@@ -1,9 +1,11 @@
 #!/bin/bash
-
+# This script is created with the information found at 
+# https://github.com/mkubecek/vmware-host-modules
+# Created by Michal Kubeček 
+ 
 # Get VMWare versionnumber
 vmware_version=$(vmware -v)
-
-version_number=$(echo "$vmware_version" | grep -oP '(?<=Workstation\s)\d+(\.\d+)*(?=\sbuild)')
+version_number=$(echo "$vmware_version" | grep -oE '[[:digit:]]+.[[:digit:]]+.[[:digit:]]+'| head -n1)
 
 # Clone git repo mkubeck
 git clone https://github.com/mkubecek/vmware-host-modules.git
@@ -19,4 +21,4 @@ sudo make install
 
 sudo /etc/init.d/vmware start
 
-# Thanks for using this script by r03n
+# Thanks for using this script created by r03n
